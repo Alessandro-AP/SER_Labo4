@@ -2,13 +2,20 @@
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+
 	<!-- Travail à faire : Compléter les parties <a compléter> de 1 à 10 afin d'obtenir le résultat expliqué dans la vidéo du laboratoire -->
 	<!-- !!!!! Nous vous rendons attentif que vous n'avez PAS LE DROIT de modifier le reste du document, mais uniquement ces parties -->
 
-	</> <!-- ##### A compléter 1 -->
-
-	<> <!-- ##### A compléter 2 -->
-
+	<!--  ##### A compléter 1 --> <!-- DONE -->
+	<xsl:output
+		method = "html"
+		encoding = "UTF-8"
+		doctype-public = "-//W3C//DTD HTML 4.01//EN"
+		doctype-system = "http://www.w3.org/TR/html4/strict.dtd"
+		indent = "yes"
+	/>
+	
+	<xsl:template match="/"> <!-- ##### A compléter 2 --> <!-- DONE -->
 		<html>
 
 			<style>
@@ -109,18 +116,18 @@
 			</script>
 
 		</html>
-
-	<> <!-- Fin a compléter 2 -->
+	</xsl:template> <!--  Fin a compléter 2 --> <!-- DONE -->
+	
 
 	<xsl:template name="lister_pokemon">
 
-		</> <!-- ##### A compléter 6 -->
+		<xsl:param name="filtre" /> <!-- ##### A compléter 6 --> <!-- DONE -->
 
 		<div class="row">
 
 			<xsl:for-each select="$filtre">
 
-				</> <!-- ##### A compléter 7 : Vous devez trier les pokemons par la valeur numérique de leur ID -->
+				<xsl:sort order="ascending" select="//id"/> <!-- ##### A compléter 7 : Vous devez trier les pokemons par la valeur numérique de leur ID --> <!-- DONE -->
 				<xsl:apply-templates select="." />
 
 			</xsl:for-each>
@@ -192,7 +199,7 @@
 
 	</xsl:template>
 
-	<> <!-- ##### A compléter 9 -->
+	<xsl:template match="base"> <!-- ##### A compléter 9 --> <!-- DONE -->
 
 		<table class="table table-stripped">
 			
@@ -219,6 +226,6 @@
 
 		</table>
 
-	<> <!-- Fin à compléter 9 -->
+	</xsl:template> <!-- Fin à compléter 9 --> <!-- DONE -->
 
 </xsl:stylesheet>
