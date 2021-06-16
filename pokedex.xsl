@@ -53,7 +53,7 @@
 
 					<div id="accordion">
 
-						<xsl:variable name="types" select="//pokemon/type[not(text() = preceding::text())]" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
+						<xsl:variable name="types" select="//type[not(text() = preceding::text())]" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
 					                                                       Le but est de récupérer les types de pokemon en parcourant tous les enfants <type> de tous les pokemons,
 					                                                       mais sans avoir de doublons à la fin, vous ne pouvez pas mettre explicitement ici les types que vous trouver dans le fichier XML
 
@@ -85,7 +85,7 @@
 
 								<!-- ##### A compléter 4 : Ici, vous devez faire appel au template lister_pokemon en lui passant le bon filtre en paramètre --><!-- DONE -->
 								<xsl:call-template name="lister_pokemon">
-									<xsl:with-param name="filtre" select="/pokedex/pokemon[type=$type]" />
+									<xsl:with-param name="filtre" select="//pokemon[type=$type]" />
 								</xsl:call-template>
 							</div>
 
