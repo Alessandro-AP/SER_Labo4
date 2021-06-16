@@ -53,7 +53,7 @@
 
 					<div id="accordion">
 
-						<xsl:variable name="types" select="" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
+						<xsl:variable name="types" select="pokemon/type[not(text() = preceding::text())]" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
 					                                                       Le but est de récupérer les types de pokemon en parcourant tous les enfants <type> de tous les pokemons,
 					                                                       mais sans avoir de doublons à la fin, vous ne pouvez pas mettre explicitement ici les types que vous trouver dans le fichier XML
 
@@ -83,8 +83,10 @@
 									<xsl:value-of select="." />
 								</xsl:attribute>
 
-								<!-- ##### A compléter 4 : Ici, vous devez faire appel au template lister_pokemon en lui passant le bon filtre en paramètre -->
-
+								<!-- ##### A compléter 4 : Ici, vous devez faire appel au template lister_pokemon en lui passant le bon filtre en paramètre --><!-- DONE -->
+								<xsl:call-template name="lister_pokemon">
+									<xsl:with-param name="filtre" select="/pokedex/pokemon[type=$type]" />
+								</xsl:call-template>
 							</div>
 
 						</xsl:for-each>
@@ -142,17 +144,31 @@
 
 			<xsl:attribute name="generation">
 
-				<!-- ##### A compléter 10 (le plus proprement possible) étant donné les contraintes suivantes : -->
+				<!-- ##### A compléter 10 (le plus proprement possible) étant donné les contraintes suivantes : --><!-- DONE -->
+				<xsl:choose>
+					<xsl:when test="id &lt;= 151">
+						<xsl:value-of select="1"/>				
+					</xsl:when>
+					<xsl:when test="id &lt;= 251">
+						<xsl:value-of select="2"/>
+					</xsl:when>
+					<xsl:when test="id &lt;= 386">
+						<xsl:value-of select="3"/>
+					</xsl:when>
+					<xsl:when test="id &lt;= 493">
+						<xsl:value-of select="4"/>
+					</xsl:when>
+					<xsl:when test="id &lt;= 649">
+						<xsl:value-of select="5"/>
+					</xsl:when>
+					<xsl:when test="id &lt;= 721">
+						<xsl:value-of select="6"/>
+					</xsl:when>
+					<xsl:when test="id &lt;= 809">
+						<xsl:value-of select="7"/>
+					</xsl:when>
+				</xsl:choose>
 
-				<!-- generation = "1" si l'id du pokemon est plus petit ou égal à 151 -->
-				<!-- generation = "2" si l'id du pokemon est plus petit ou égal à 251 et plus grand que 151 -->
-				<!-- generation = "3" si l'id du pokemon est plus petit ou égal à 386 et plus grand que 251 -->
-				<!-- generation = "4" si l'id du pokemon est plus petit ou égal à 493 et plus grand que 386 -->
-				<!-- generation = "5" si l'id du pokemon est plus petit ou égal à 649 et plus grand que 493 -->
-				<!-- generation = "6" si l'id du pokemon est plus petit ou égal à 721 et plus grand que 649.-->
-				<!-- generation = "7" si l'id du pokemon est plus petit ou égal à 809 et plus grand que 721-->
-
-				<xsl:value-of select="1"><!-- Pour l'instant tous les pokémosn sont de la génération 1, pour que vous ne soyez pas bloqué sur le reste -->
 
 				<!-- Fin A compléter 10 -->
 
@@ -190,11 +206,13 @@
 
 	<xsl:template match="id">
 
-		<img width="100%"
+		<img width="100%">
 
-			</> <!-- ##### A compléter 8 : Ici, vous devez étudier le dossier images et vous trouverez facilement l'objectif de ce que vous devez faire ici. Indice : Vous devez utiliser une ou plusieurs 	               fonctions de  XSLT-->
-
-				<!-- NB : La sources d'images utilisées provient de :  https://github.com/fanzeyi/pokemon.json    -->
+		<xsl:variable name="id" select="." />
+		<xsl:attribute name="src">
+			images/<xsl:number value="$id" format="001"/>.png
+		</xsl:attribute>
+		
 		</img>
 
 	</xsl:template>
