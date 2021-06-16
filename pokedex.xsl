@@ -53,7 +53,7 @@
 
 					<div id="accordion">
 
-						<xsl:variable name="types" select="pokemon/type[not(text() = preceding::text())]" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
+						<xsl:variable name="types" select="//pokemon/type[not(text() = preceding::text())]" /> <!-- ##### A compléter 3 : Ici, vous devez trouver l'expression XPath à mettre dans l'attribut select 
 					                                                       Le but est de récupérer les types de pokemon en parcourant tous les enfants <type> de tous les pokemons,
 					                                                       mais sans avoir de doublons à la fin, vous ne pouvez pas mettre explicitement ici les types que vous trouver dans le fichier XML
 
@@ -212,7 +212,7 @@
 		<xsl:attribute name="src">
 			images/<xsl:number value="$id" format="001"/>.png
 		</xsl:attribute>
-		
+
 		</img>
 
 	</xsl:template>
